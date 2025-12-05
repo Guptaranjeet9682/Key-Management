@@ -1,0 +1,33 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/keys"
+  to = "/.netlify/functions/keys"
+  status = 200
+
+[[redirects]]
+  from = "/getkey"
+  to = "/.netlify/functions/getkey"
+  status = 200
+
+[[redirects]]
+  from = "/verify/*"
+  to = "/.netlify/functions/verify"
+  status = 200
+
+[[redirects]]
+  from = "/delete-expired"
+  to = "/.netlify/functions/delete-expired"
+  status = 200
+
+[[redirects]]
+  from = "/clear-db"
+  to = "/.netlify/functions/clear-db"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
