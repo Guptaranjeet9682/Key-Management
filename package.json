@@ -1,0 +1,11 @@
+{
+  "name": "key-checker-netlify",
+  "version": "1.0.0",
+  "description": "Advanced Key Management System for Netlify",
+  "scripts": {
+    "build": "echo 'Build complete'"
+  },
+  "dependencies": {
+    "mongodb": "^5.0.0"
+  }
+}
