@@ -37,24 +37,6 @@
             padding: 40px 30px;
             text-align: center;
             border-bottom: 5px solid #3498db;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
         
         .header h1 {
@@ -62,8 +44,6 @@
             margin-bottom: 15px;
             font-weight: 800;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
         }
         
         .header p {
@@ -72,85 +52,10 @@
             max-width: 700px;
             margin: 0 auto;
             line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header .status {
-            background: rgba(39, 174, 96, 0.2);
-            border: 2px solid #27ae60;
-            padding: 10px 20px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 20px;
-            font-weight: bold;
-            position: relative;
-            z-index: 1;
         }
         
         .content {
             padding: 40px;
-        }
-        
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.4);
-        }
-        
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-        }
-        
-        .stat-card h3 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .stat-card p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .stat-card.active {
-            background: linear-gradient(135deg, #27ae60, #229954);
-            box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
-        }
-        
-        .stat-card.expired {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
-        }
-        
-        .stat-card.total {
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-            box-shadow: 0 10px 20px rgba(155, 89, 182, 0.3);
         }
         
         .section {
@@ -160,13 +65,6 @@
             margin-bottom: 35px;
             border: 2px solid #e3f2fd;
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .section:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-            border-color: #3498db;
         }
         
         .section h2 {
@@ -191,7 +89,6 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
         }
         
         .url-box {
@@ -205,7 +102,6 @@
             line-height: 1.6;
             overflow-x: auto;
             border-left: 6px solid #3498db;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
         
         .url-box .method {
@@ -216,12 +112,6 @@
             margin-right: 12px;
             font-weight: bold;
             display: inline-block;
-            box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
-        }
-        
-        .url-box .endpoint {
-            color: #ecf0f1;
-            font-weight: 500;
         }
         
         .form-group {
@@ -252,7 +142,6 @@
             font-size: 16px;
             transition: all 0.3s;
             background: #f8f9fa;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         
         .form-group input:focus {
@@ -260,10 +149,6 @@
             box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
             outline: none;
             background: white;
-        }
-        
-        .form-group input::placeholder {
-            color: #95a5a6;
         }
         
         .btn {
@@ -280,32 +165,11 @@
             align-items: center;
             gap: 12px;
             box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
-            position: relative;
-            overflow: hidden;
         }
         
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(52, 152, 219, 0.4);
-        }
-        
-        .btn:active {
-            transform: translateY(-1px);
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn:hover::after {
-            left: 100%;
         }
         
         .btn-danger {
@@ -317,15 +181,6 @@
             box-shadow: 0 12px 25px rgba(231, 76, 60, 0.4);
         }
         
-        .btn-warning {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3);
-        }
-        
-        .btn-warning:hover {
-            box-shadow: 0 12px 25px rgba(243, 156, 18, 0.4);
-        }
-        
         .btn-success {
             background: linear-gradient(135deg, #27ae60, #229954);
             box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
@@ -333,13 +188,6 @@
         
         .btn-success:hover {
             box-shadow: 0 12px 25px rgba(39, 174, 96, 0.4);
-        }
-        
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 25px;
         }
         
         .result-box {
@@ -355,28 +203,11 @@
             line-height: 1.6;
             white-space: pre-wrap;
             word-wrap: break-word;
-            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         
         .admin-section {
             border-color: #e74c3c;
             background: linear-gradient(135deg, #fff, #ffeaea);
-            position: relative;
-        }
-        
-        .admin-section::before {
-            content: 'ADMIN ONLY';
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: #e74c3c;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
         }
         
         .admin-section h2 {
@@ -391,7 +222,6 @@
             background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             margin: 20px 0;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
         .loading.active {
@@ -413,50 +243,23 @@
             100% { transform: rotate(360deg); }
         }
         
-        .success { 
-            color: #27ae60; 
-            font-weight: bold;
+        .success { color: #27ae60; font-weight: bold; }
+        .error { color: #e74c3c; font-weight: bold; }
+        
+        .note {
+            background: #e3f2fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #1565c0;
+            border-left: 4px solid #3498db;
         }
         
-        .error { 
-            color: #e74c3c; 
-            font-weight: bold;
-        }
-        
-        .warning { 
-            color: #f39c12; 
-            font-weight: bold;
-        }
-        
-        .notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            padding: 20px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: none;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        .notification.success {
-            background: linear-gradient(135deg, #27ae60, #229954);
-        }
-        
-        .notification.error {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-        
-        .notification.info {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+        .note.warning {
+            background: #fff3e0;
+            color: #ef6c00;
+            border-left-color: #f39c12;
         }
         
         @media (max-width: 768px) {
@@ -464,73 +267,36 @@
             .header h1 { font-size: 2.2rem; }
             .section { padding: 25px; }
             .btn { padding: 15px 25px; }
-            .dashboard { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Notification System -->
-    <div id="notification" class="notification"></div>
-    
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <h1><i class="fas fa-key"></i> Advanced Key Manager</h1>
             <p>Professional Key Management System with MongoDB & Netlify Functions</p>
-            <div class="status">
-                <i class="fas fa-check-circle"></i> System Status: ONLINE
-            </div>
         </div>
         
-        <!-- Main Content -->
         <div class="content">
-            <!-- Dashboard Stats -->
-            <div class="dashboard" id="dashboard">
-                <!-- Stats will be loaded here -->
-            </div>
-            
-            <!-- Get All Keys -->
-            <div class="section">
-                <h2><i class="fas fa-list"></i> Get All Active Keys</h2>
-                <div class="url-box">
-                    <span class="method">GET</span>
-                    <span class="endpoint">/keys</span>
-                </div>
-                <p>Returns all active keys in format: <code>device_id:expiry_date</code> (one per line)</p>
-                
-                <div class="btn-group">
-                    <button class="btn" onclick="getAllKeys()">
-                        <i class="fas fa-sync-alt"></i> Refresh Keys
-                    </button>
-                    <button class="btn btn-success" onclick="copyKeys()">
-                        <i class="fas fa-copy"></i> Copy Keys
-                    </button>
-                </div>
-                
-                <div class="loading" id="keysLoading">
-                    <div class="spinner"></div>
-                    <p>Loading active keys from database...</p>
-                </div>
-                
-                <div class="result-box" id="keysResult">
-                    Click "Refresh Keys" to load active keys
-                </div>
-            </div>
-            
             <!-- Generate/Update Key -->
             <div class="section">
                 <h2><i class="fas fa-plus-circle"></i> Generate/Update Key</h2>
                 <div class="url-box">
-                    <span class="method">GET</span>
-                    <span class="endpoint">/getkey?device_id=DEVICE_ID&expiry_date=DD/MM/YYYY</span>
+                    <span class="method">GET</span> /getkey?device_id=DEVICE_ID&expiry_date=DD/MM/YYYY
                 </div>
-                <p>Generate a new key or update existing one. If no expiry date provided, default is 48 hours.</p>
+                
+                <div class="note">
+                    <i class="fas fa-info-circle"></i> Default expiry: 120 hours (5 days) if no date provided
+                </div>
                 
                 <div class="form-group">
                     <label for="deviceId">
                         <i class="fas fa-microchip"></i> Device ID
                     </label>
-                    <input type="text" id="deviceId" placeholder="Enter device ID (e.g., phone123, laptop456)" required>
+                    <input type="text" id="deviceId" placeholder="Enter device ID or paste full key (automatic cleaning)">
+                    <small style="color: #7f8c8d; display: block; margin-top: 5px;">
+                        If you paste "abc123:05/12/2025", it will automatically become "abc123"
+                    </small>
                 </div>
                 
                 <div class="form-group">
@@ -539,7 +305,7 @@
                     </label>
                     <input type="text" id="expiryDate" placeholder="DD/MM/YYYY (e.g., 31/12/2025)">
                     <small style="color: #7f8c8d; display: block; margin-top: 5px;">
-                        Leave empty for default 48 hours expiry
+                        Leave empty for default 120 hours (5 days) expiry
                     </small>
                 </div>
                 
@@ -553,7 +319,29 @@
                 </div>
                 
                 <div class="result-box" id="generateResult">
-                    Key will appear here after generation
+                    JSON response will appear here with success/failure details
+                </div>
+            </div>
+            
+            <!-- Get All Keys -->
+            <div class="section">
+                <h2><i class="fas fa-list"></i> Get All Active Keys</h2>
+                <div class="url-box">
+                    <span class="method">GET</span> /keys
+                </div>
+                <p>Returns all active keys in format: <code>device_id:expiry_date</code> (one per line)</p>
+                
+                <button class="btn" onclick="getAllKeys()">
+                    <i class="fas fa-sync-alt"></i> Refresh Keys
+                </button>
+                
+                <div class="loading" id="keysLoading">
+                    <div class="spinner"></div>
+                    <p>Loading active keys from database...</p>
+                </div>
+                
+                <div class="result-box" id="keysResult">
+                    Click "Refresh Keys" to load active keys
                 </div>
             </div>
             
@@ -561,8 +349,7 @@
             <div class="section">
                 <h2><i class="fas fa-check-circle"></i> Verify Device</h2>
                 <div class="url-box">
-                    <span class="method">GET</span>
-                    <span class="endpoint">/verify/device_id?id=DEVICE_ID</span>
+                    <span class="method">GET</span> /verify/device_id?id=DEVICE_ID
                 </div>
                 <p>Check device status, expiry date, and validity.</p>
                 
@@ -570,7 +357,7 @@
                     <label for="verifyDeviceId">
                         <i class="fas fa-search"></i> Device ID to Verify
                     </label>
-                    <input type="text" id="verifyDeviceId" placeholder="Enter device ID to verify" required>
+                    <input type="text" id="verifyDeviceId" placeholder="Enter device ID to verify">
                 </div>
                 
                 <button class="btn" onclick="verifyDevice()">
@@ -590,14 +377,15 @@
             <!-- Admin Controls -->
             <div class="section admin-section">
                 <h2><i class="fas fa-user-shield"></i> Admin Controls</h2>
-                <p><i class="fas fa-lock"></i> Restricted access - Admin functions only</p>
+                <div class="note warning">
+                    <i class="fas fa-exclamation-triangle"></i> Restricted access - Admin functions only
+                </div>
                 
                 <!-- Delete Expired Keys -->
                 <div style="margin-bottom: 35px;">
                     <h3><i class="fas fa-trash-alt"></i> Delete Expired Keys</h3>
                     <div class="url-box">
-                        <span class="method">POST</span>
-                        <span class="endpoint">/delete-expired</span>
+                        <span class="method">POST</span> /delete-expired
                     </div>
                     <p>Manually delete all expired keys from database (Auto-delete also happens on /keys request).</p>
                     
@@ -619,18 +407,20 @@
                 <div>
                     <h3><i class="fas fa-bomb"></i> Clear Entire Database</h3>
                     <div class="url-box">
-                        <span class="method">POST</span>
-                        <span class="endpoint">/clear-db</span>
+                        <span class="method">POST</span> /clear-db
                     </div>
-                    <p style="color: #e74c3c; font-weight: bold; background: #ffebee; padding: 15px; border-radius: 10px;">
+                    <div class="note warning">
                         <i class="fas fa-exclamation-triangle"></i> WARNING: This will delete ALL keys permanently! Use with caution.
-                    </p>
+                    </div>
                     
                     <div class="form-group">
                         <label for="adminKey">
-                            <i class="fas fa-key"></i> Admin Key (8195)
+                            <i class="fas fa-key"></i> Admin Key
                         </label>
-                        <input type="password" id="adminKey" placeholder="Enter admin key to confirm" required>
+                        <input type="password" id="adminKey" placeholder="Enter admin key" required>
+                        <small style="color: #7f8c8d; display: block; margin-top: 5px;">
+                            Contact administrator for the key
+                        </small>
                     </div>
                     
                     <button class="btn btn-danger" onclick="clearDatabase()">
@@ -651,21 +441,6 @@
     </div>
 
     <script>
-        // Global state
-        let activeKeysCount = 0;
-        
-        // Show notification
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.style.display = 'block';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
-        }
-        
         // Show loading
         function showLoading(elementId) {
             document.getElementById(elementId).classList.add('active');
@@ -676,52 +451,11 @@
             document.getElementById(elementId).classList.remove('active');
         }
         
-        // Load dashboard stats
-        async function loadDashboardStats() {
-            try {
-                const response = await fetch('/keys');
-                const text = await response.text();
-                const activeKeys = text.trim() === 'No active keys' ? 0 : 
-                    text.trim().split('\n').filter(line => line.trim() !== '').length;
-                
-                activeKeysCount = activeKeys;
-                
-                const dashboard = document.getElementById('dashboard');
-                dashboard.innerHTML = `
-                    <div class="stat-card total">
-                        <h3>${activeKeys}</h3>
-                        <p>Total Active Keys</p>
-                        <small>Auto-refreshes every 60s</small>
-                    </div>
-                    <div class="stat-card active">
-                        <h3>Auto</h3>
-                        <p>Expiry Cleanup</p>
-                        <small>On every request</small>
-                    </div>
-                    <div class="stat-card">
-                        <h3>MongoDB</h3>
-                        <p>Database</p>
-                        <small>Connected ✓</small>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Netlify</h3>
-                        <p>Deployment</p>
-                        <small>Functions ✓</small>
-                    </div>
-                `;
-            } catch (error) {
-                console.error('Error loading stats:', error);
-            }
-        }
-        
         // Get all keys
         async function getAllKeys() {
             showLoading('keysLoading');
             try {
                 const response = await fetch('/keys');
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
                 const text = await response.text();
                 const resultBox = document.getElementById('keysResult');
                 
@@ -729,45 +463,25 @@
                     resultBox.innerHTML = '<span class="warning">No active keys found in database.</span>';
                 } else {
                     resultBox.textContent = text;
-                    activeKeysCount = text.trim().split('\n').filter(line => line.trim() !== '').length;
-                    loadDashboardStats();
-                    showNotification(`Loaded ${activeKeysCount} active keys`, 'success');
                 }
             } catch (error) {
                 document.getElementById('keysResult').innerHTML = 
                     `<span class="error">Error loading keys: ${error.message}</span>`;
-                showNotification('Error loading keys', 'error');
             } finally {
                 hideLoading('keysLoading');
             }
         }
         
-        // Copy keys to clipboard
-        async function copyKeys() {
-            const keysText = document.getElementById('keysResult').textContent;
-            if (!keysText || keysText.includes('Error') || keysText.includes('No active')) {
-                showNotification('No keys to copy', 'warning');
-                return;
-            }
-            
-            try {
-                await navigator.clipboard.writeText(keysText);
-                showNotification('Keys copied to clipboard!', 'success');
-            } catch (error) {
-                showNotification('Failed to copy keys', 'error');
-            }
-        }
-        
         // Generate key
         async function generateKey() {
-            const deviceId = document.getElementById('deviceId').value.trim();
-            const expiryDate = document.getElementById('expiryDate').value.trim();
+            let deviceId = document.getElementById('deviceId').value.trim();
             
             if (!deviceId) {
-                showNotification('Please enter Device ID', 'error');
+                alert('Please enter Device ID');
                 return;
             }
             
+            const expiryDate = document.getElementById('expiryDate').value.trim();
             showLoading('generateLoading');
             
             let url = `/getkey?device_id=${encodeURIComponent(deviceId)}`;
@@ -775,7 +489,7 @@
                 // Validate date format
                 if (!/^\d{2}\/\d{2}\/\d{4}$/.test(expiryDate)) {
                     hideLoading('generateLoading');
-                    showNotification('Invalid date format. Use DD/MM/YYYY', 'error');
+                    alert('Invalid date format. Please use DD/MM/YYYY');
                     return;
                 }
                 url += `&expiry_date=${encodeURIComponent(expiryDate)}`;
@@ -783,20 +497,16 @@
             
             try {
                 const response = await fetch(url);
-                const text = await response.text();
+                const data = await response.json();
                 
-                if (!response.ok) {
-                    throw new Error(text || 'Failed to generate key');
+                if (data.success) {
+                    document.getElementById('generateResult').innerHTML = 
+                        `<span class="success">✓ ${data.message}</span>\n\n` +
+                        JSON.stringify(data, null, 2);
+                } else {
+                    throw new Error(data.message || 'Failed to generate key');
                 }
                 
-                document.getElementById('generateResult').innerHTML = 
-                    `<span class="success">✓ Key Generated/Updated Successfully!</span>\n\n` +
-                    `<strong>${text}</strong>\n\n` +
-                    `Device ID: ${deviceId}\n` +
-                    `Expiry Date: ${text.split(':')[1]}\n` +
-                    `Timestamp: ${new Date().toLocaleString()}`;
-                
-                showNotification('Key generated/updated successfully!', 'success');
                 getAllKeys(); // Refresh keys list
                 
                 // Clear form
@@ -805,7 +515,6 @@
             } catch (error) {
                 document.getElementById('generateResult').innerHTML = 
                     `<span class="error">✗ Error: ${error.message}</span>`;
-                showNotification('Error generating key', 'error');
             } finally {
                 hideLoading('generateLoading');
             }
@@ -816,7 +525,7 @@
             const deviceId = document.getElementById('verifyDeviceId').value.trim();
             
             if (!deviceId) {
-                showNotification('Please enter Device ID', 'error');
+                alert('Please enter Device ID');
                 return;
             }
             
@@ -826,29 +535,17 @@
                 const response = await fetch(`/verify/device_id?id=${encodeURIComponent(deviceId)}`);
                 const data = await response.json();
                 
-                if (!response.ok) {
+                if (response.ok) {
+                    const statusColor = data.status === 'valid' ? 'success' : 'error';
+                    document.getElementById('verifyResult').innerHTML = 
+                        `<span class="${statusColor}">STATUS: ${data.status.toUpperCase()}</span>\n\n` +
+                        JSON.stringify(data, null, 2);
+                } else {
                     throw new Error(data.error || 'Verification failed');
                 }
-                
-                const statusColor = data.status === 'valid' ? 'success' : 
-                    data.status === 'expired' ? 'error' : 'warning';
-                const statusIcon = data.status === 'valid' ? 'fa-check-circle' : 
-                    data.status === 'expired' ? 'fa-times-circle' : 'fa-question-circle';
-                
-                document.getElementById('verifyResult').innerHTML = 
-                    `<span class="${statusColor}"><i class="fas ${statusIcon}"></i> STATUS: ${data.status.toUpperCase()}</span>\n\n` +
-                    `Device ID: ${data.device_id}\n` +
-                    `Expiry Date: ${data.expiry_date}\n` +
-                    `Days Remaining: ${data.days_remaining}\n` +
-                    `Created: ${new Date(data.created_at).toLocaleString()}\n` +
-                    `Last Updated: ${new Date(data.last_updated).toLocaleString()}\n` +
-                    `Message: ${data.message}`;
-                
-                showNotification(`Device status: ${data.status}`, data.status === 'valid' ? 'success' : 'warning');
             } catch (error) {
                 document.getElementById('verifyResult').innerHTML = 
                     `<span class="error">✗ Error: ${error.message}</span>`;
-                showNotification('Error verifying device', 'error');
             } finally {
                 hideLoading('verifyLoading');
             }
@@ -875,11 +572,7 @@
                 if (data.success) {
                     document.getElementById('expiredResult').innerHTML = 
                         `<span class="success">✓ ${data.message}</span>\n\n` +
-                        `Deleted Count: ${data.deleted_count}\n` +
-                        `Timestamp: ${new Date().toLocaleString()}\n\n` +
-                        `Deleted Keys:\n${data.deleted_keys.map(k => `  • ${k.device_id} (${k.expiry_date})`).join('\n') || 'None'}`;
-                    
-                    showNotification(data.message, 'success');
+                        JSON.stringify(data, null, 2);
                 } else {
                     throw new Error(data.error || 'Failed to delete expired keys');
                 }
@@ -888,7 +581,6 @@
             } catch (error) {
                 document.getElementById('expiredResult').innerHTML = 
                     `<span class="error">✗ Error: ${error.message}</span>`;
-                showNotification('Error deleting expired keys', 'error');
             } finally {
                 hideLoading('expiredLoading');
             }
@@ -899,7 +591,7 @@
             const adminKey = document.getElementById('adminKey').value.trim();
             
             if (!adminKey) {
-                showNotification('Please enter admin key', 'error');
+                alert('Please enter admin key');
                 return;
             }
             
@@ -923,38 +615,58 @@
                 if (data.success) {
                     document.getElementById('clearResult').innerHTML = 
                         `<span class="success">✓ Database Cleared Successfully!</span>\n\n` +
-                        `Message: ${data.message}\n` +
-                        `Deleted Count: ${data.deleted_count}\n` +
-                        `Previous Count: ${data.previous_count}\n` +
-                        `Timestamp: ${new Date(data.timestamp).toLocaleString()}`;
-                    
-                    showNotification('Database cleared successfully!', 'success');
+                        JSON.stringify(data, null, 2);
                     document.getElementById('adminKey').value = '';
                 } else {
                     throw new Error(data.error || 'Failed to clear database');
                 }
                 
                 getAllKeys(); // Refresh keys list
-                loadDashboardStats(); // Refresh stats
             } catch (error) {
                 document.getElementById('clearResult').innerHTML = 
                     `<span class="error">✗ Error: ${error.message}</span>`;
-                showNotification('Error clearing database', 'error');
             } finally {
                 hideLoading('clearLoading');
             }
         }
         
+        // Auto-clean Device ID input (remove everything after ":")
+        document.getElementById('deviceId').addEventListener('input', function(e) {
+            let value = this.value;
+            if (value.includes(':')) {
+                this.value = value.split(':')[0].trim();
+            }
+        });
+        
+        // Auto-clean Device ID on paste
+        document.getElementById('deviceId').addEventListener('paste', function(e) {
+            // Get pasted data
+            let pastedData = e.clipboardData.getData('text');
+            
+            // Check if pasted data contains ":"
+            if (pastedData.includes(':')) {
+                // Extract device ID (part before ":")
+                let deviceId = pastedData.split(':')[0].trim();
+                
+                // Prevent default paste
+                e.preventDefault();
+                
+                // Set the cleaned value
+                this.value = deviceId;
+            }
+        });
+        
+        // Auto-clean Verify Device ID input
+        document.getElementById('verifyDeviceId').addEventListener('input', function(e) {
+            let value = this.value;
+            if (value.includes(':')) {
+                this.value = value.split(':')[0].trim();
+            }
+        });
+        
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            loadDashboardStats();
             getAllKeys();
-            
-            // Auto-refresh keys every 60 seconds
-            setInterval(getAllKeys, 60000);
-            
-            // Auto-refresh stats every 30 seconds
-            setInterval(loadDashboardStats, 30000);
             
             // Add enter key support
             document.getElementById('deviceId').addEventListener('keypress', function(e) {
@@ -968,9 +680,7 @@
             document.getElementById('adminKey').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') clearDatabase();
             });
-            
-            showNotification('System loaded successfully!', 'success');
         });
     </script>
 </body>
-  </html>
+</html>
