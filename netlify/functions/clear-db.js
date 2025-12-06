@@ -40,7 +40,7 @@ exports.handler = async function(event, context) {
             const { admin_key } = body;
             
             // Verify admin key
-            if (admin_key !== ADMIN_KEY) {
+            if (!admin_key || admin_key !== ADMIN_KEY) {
                 return {
                     statusCode: 403,
                     headers: headers,
@@ -74,7 +74,8 @@ exports.handler = async function(event, context) {
                     message: `Database cleared successfully. Deleted ${result.deletedCount} keys.`,
                     deleted_count: result.deletedCount,
                     previous_count: countBefore,
-                    timestamp: new Date().toISOString()
+                    timestamp: new Date().toISOString(),
+                    warning: 'All data has been permanently deleted!'
                 }, null, 2)
             };
             
@@ -86,7 +87,7 @@ exports.handler = async function(event, context) {
                 body: JSON.stringify({
                     success: false,
                     error: 'Server error',
-                    details: error.message
+                    message: error.message
                 })
             };
         }
@@ -94,7 +95,10 @@ exports.handler = async function(event, context) {
         return {
             statusCode: 405,
             headers: headers,
-            body: JSON.stringify({ error: 'Method not allowed' })
+            body: JSON.stringify({ 
+                success: false,
+                error: 'Method not allowed' 
+            })
         };
     }
 };
