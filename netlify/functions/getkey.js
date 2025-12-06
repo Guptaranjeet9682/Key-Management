@@ -4,7 +4,7 @@ const uri = "mongodb+srv://Anish_Gupta:Anish_Gupta@filestore.sa21pfy.mongodb.net
 
 exports.handler = async function(event, context) {
     const headers = {
-        'Content-Type': 'text/plain',
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type'
@@ -31,7 +31,11 @@ exports.handler = async function(event, context) {
                 return {
                     statusCode: 400,
                     headers: headers,
-                    body: 'Error: device_id is required'
+                    body: JSON.stringify({
+                        success: false,
+                        error: 'device_id is required',
+                        message: 'Please provide a device_id parameter'
+                    }, null, 2)
                 };
             }
             
@@ -43,14 +47,18 @@ exports.handler = async function(event, context) {
                     return {
                         statusCode: 400,
                         headers: headers,
-                        body: 'Error: expiry_date must be in format dd/mm/yyyy'
+                        body: JSON.stringify({
+                            success: false,
+                            error: 'Invalid date format',
+                            message: 'expiry_date must be in format DD/MM/YYYY'
+                        }, null, 2)
                     };
                 }
                 expiryDateStr = expiry_date;
             } else {
-                // Default: 48 hours from now
+                // CHANGED: Default: 120 hours (5 days) from now
                 const now = new Date();
-                now.setHours(now.getHours() + 48);
+                now.setHours(now.getHours() + 120);
                 const day = String(now.getDate()).padStart(2, '0');
                 const month = String(now.getMonth() + 1).padStart(2, '0');
                 const year = now.getFullYear();
@@ -62,6 +70,9 @@ exports.handler = async function(event, context) {
             await client.connect();
             const db = client.db('keychecker');
             const collection = db.collection('keys');
+            
+            // Check if device already exists
+            const existingKey = await collection.findOne({ device_id: device_id.trim() });
             
             // Prepare key data
             const keyData = {
@@ -81,11 +92,21 @@ exports.handler = async function(event, context) {
             
             await client.close();
             
-            // Return in format: device_id:expiry_date
+            // NEW: Return JSON response with details (similar to verify)
             return {
                 statusCode: 200,
                 headers: headers,
-                body: `${device_id.trim()}:${expiryDateStr}`
+                body: JSON.stringify({
+                    success: true,
+                    message: existingKey ? 'Key updated successfully' : 'Key generated successfully',
+                    device_id: device_id.trim(),
+                    expiry_date: expiryDateStr,
+                    status: 'active',
+                    created_at: keyData.created_at,
+                    last_updated: keyData.updated_at,
+                    key_format: `${device_id.trim()}:${expiryDateStr}`,
+                    note: 'Use device_id:expiry_date format for /keys endpoint'
+                }, null, 2)
             };
             
         } catch (error) {
@@ -93,14 +114,21 @@ exports.handler = async function(event, context) {
             return {
                 statusCode: 500,
                 headers: headers,
-                body: `Error: ${error.message}`
+                body: JSON.stringify({
+                    success: false,
+                    error: 'Server error',
+                    message: error.message
+                }, null, 2)
             };
         }
     } else {
         return {
             statusCode: 405,
             headers: headers,
-            body: 'Method not allowed'
+            body: JSON.stringify({ 
+                success: false,
+                error: 'Method not allowed' 
+            }, null, 2)
         };
     }
 };
