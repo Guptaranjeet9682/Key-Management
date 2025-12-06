@@ -23,7 +23,12 @@ exports.handler = async function(event, context) {
         try {
             // Extract device_id from query parameters
             const params = event.queryStringParameters || {};
-            const device_id = params.id || params.device_id;
+            let device_id = params.id || params.device_id;
+            
+            // Clean device_id - remove everything after ":" if present
+            if (device_id && device_id.includes(':')) {
+                device_id = device_id.split(':')[0].trim();
+            }
             
             // Validate device_id
             if (!device_id || device_id.trim() === '') {
@@ -31,6 +36,7 @@ exports.handler = async function(event, context) {
                     statusCode: 400,
                     headers: headers,
                     body: JSON.stringify({ 
+                        success: false,
                         error: 'device_id is required',
                         message: 'Use: /verify/device_id?id=your_device_id'
                     })
@@ -54,6 +60,7 @@ exports.handler = async function(event, context) {
                     statusCode: 404,
                     headers: headers,
                     body: JSON.stringify({
+                        success: false,
                         device_id: device_id.trim(),
                         status: 'not_found',
                         message: 'Device ID not found in database'
@@ -67,9 +74,10 @@ exports.handler = async function(event, context) {
             const now = new Date();
             const isExpired = expiryDate < now;
             
-            // Calculate days remaining
+            // Calculate days and hours remaining
             const diffTime = expiryDate - now;
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
             
             await client.close();
             
@@ -78,10 +86,12 @@ exports.handler = async function(event, context) {
                 statusCode: 200,
                 headers: headers,
                 body: JSON.stringify({
+                    success: true,
                     device_id: device.device_id,
                     expiry_date: device.expiry_date,
                     status: isExpired ? 'expired' : 'valid',
                     days_remaining: isExpired ? 0 : diffDays,
+                    hours_remaining: isExpired ? 0 : diffHours,
                     created_at: device.created_at,
                     last_updated: device.updated_at,
                     message: isExpired ? 'Key has expired' : 'Key is valid'
@@ -94,8 +104,9 @@ exports.handler = async function(event, context) {
                 statusCode: 500,
                 headers: headers,
                 body: JSON.stringify({
+                    success: false,
                     error: 'Server error',
-                    details: error.message
+                    message: error.message
                 })
             };
         }
@@ -103,7 +114,10 @@ exports.handler = async function(event, context) {
         return {
             statusCode: 405,
             headers: headers,
-            body: JSON.stringify({ error: 'Method not allowed' })
+            body: JSON.stringify({ 
+                success: false,
+                error: 'Method not allowed' 
+            })
         };
     }
 };
