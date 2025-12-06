@@ -23,8 +23,13 @@ exports.handler = async function(event, context) {
         try {
             // Get query parameters
             const params = event.queryStringParameters || {};
-            const device_id = params.device_id;
+            let device_id = params.device_id;
             const expiry_date = params.expiry_date;
+            
+            // Clean device_id - remove everything after ":" if present
+            if (device_id && device_id.includes(':')) {
+                device_id = device_id.split(':')[0].trim();
+            }
             
             // Validate device_id
             if (!device_id || device_id.trim() === '') {
@@ -34,8 +39,8 @@ exports.handler = async function(event, context) {
                     body: JSON.stringify({
                         success: false,
                         error: 'device_id is required',
-                        message: 'Please provide a device_id parameter'
-                    }, null, 2)
+                        message: 'Please provide a valid device ID'
+                    })
                 };
             }
             
@@ -50,13 +55,13 @@ exports.handler = async function(event, context) {
                         body: JSON.stringify({
                             success: false,
                             error: 'Invalid date format',
-                            message: 'expiry_date must be in format DD/MM/YYYY'
-                        }, null, 2)
+                            message: 'expiry_date must be in format dd/mm/yyyy'
+                        })
                     };
                 }
                 expiryDateStr = expiry_date;
             } else {
-                // CHANGED: Default: 120 hours (5 days) from now
+                // Default: 120 hours (5 days) from now
                 const now = new Date();
                 now.setHours(now.getHours() + 120);
                 const day = String(now.getDate()).padStart(2, '0');
@@ -71,15 +76,17 @@ exports.handler = async function(event, context) {
             const db = client.db('keychecker');
             const collection = db.collection('keys');
             
-            // Check if device already exists
+            // Check if device exists
             const existingKey = await collection.findOne({ device_id: device_id.trim() });
+            const isUpdate = existingKey ? true : false;
             
             // Prepare key data
+            const now = new Date();
             const keyData = {
                 device_id: device_id.trim(),
                 expiry_date: expiryDateStr,
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString(),
+                created_at: isUpdate ? existingKey.created_at : now.toISOString(),
+                updated_at: now.toISOString(),
                 status: 'active'
             };
             
@@ -92,20 +99,20 @@ exports.handler = async function(event, context) {
             
             await client.close();
             
-            // NEW: Return JSON response with details (similar to verify)
+            // Return detailed JSON response
             return {
                 statusCode: 200,
                 headers: headers,
                 body: JSON.stringify({
                     success: true,
-                    message: existingKey ? 'Key updated successfully' : 'Key generated successfully',
+                    message: isUpdate ? 'Key updated successfully' : 'Key generated successfully',
                     device_id: device_id.trim(),
                     expiry_date: expiryDateStr,
                     status: 'active',
+                    hours_valid: 120,
                     created_at: keyData.created_at,
                     last_updated: keyData.updated_at,
-                    key_format: `${device_id.trim()}:${expiryDateStr}`,
-                    note: 'Use device_id:expiry_date format for /keys endpoint'
+                    format: `${device_id.trim()}:${expiryDateStr}`
                 }, null, 2)
             };
             
@@ -118,7 +125,7 @@ exports.handler = async function(event, context) {
                     success: false,
                     error: 'Server error',
                     message: error.message
-                }, null, 2)
+                })
             };
         }
     } else {
@@ -128,7 +135,7 @@ exports.handler = async function(event, context) {
             body: JSON.stringify({ 
                 success: false,
                 error: 'Method not allowed' 
-            }, null, 2)
+            })
         };
     }
 };
