@@ -18,6 +18,11 @@
   status = 200
 
 [[redirects]]
+  from = "/delete/*"
+  to = "/.netlify/functions/delete-device"
+  status = 200
+
+[[redirects]]
   from = "/delete-expired"
   to = "/.netlify/functions/delete-expired"
   status = 200
